@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine3.8
+FROM php:7.2-fpm-alpine
 
 ENV PHP_VERSION 7.2
 ENV PHP_INI_DIR /usr/local/etc/php

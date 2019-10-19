@@ -1,4 +1,4 @@
-FROM php:%%PHP_VERSION%%-fpm-alpine%%ALPINE_VERSION%%
+FROM php:%%PHP_VERSION%%-fpm-alpine
 
 ENV PHP_VERSION %%PHP_VERSION%%
 ENV PHP_INI_DIR /usr/local/etc/php
@@ -24,7 +24,7 @@ RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
 # add pecl php extensions
-RUN pecl install redis && docker-php-ext-enable redis && \
+RUN pecl install redis%%REDIS_VERSION%% && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip
 
 # add standart ioncube php-extension

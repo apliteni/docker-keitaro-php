@@ -1,4 +1,4 @@
-FROM php:7.0-fpm-alpine3.7
+FROM php:7.0-fpm-alpine
 
 ENV PHP_VERSION 7.0
 ENV PHP_INI_DIR /usr/local/etc/php
@@ -24,7 +24,7 @@ RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
 # add pecl php extensions
-RUN pecl install redis && docker-php-ext-enable redis && \
+RUN pecl install redis-2.2.8 && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip
 
 # add standart ioncube php-extension
