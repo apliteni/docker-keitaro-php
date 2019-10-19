@@ -1,4 +1,4 @@
-FROM php:%%PHP_VERSION%%-fpm-alpine3.8
+FROM php:%%PHP_VERSION%%-fpm-alpine3.7
 
 ENV PHP_VERSION %%PHP_VERSION%%
 ENV PHP_INI_DIR /usr/local/etc/php
