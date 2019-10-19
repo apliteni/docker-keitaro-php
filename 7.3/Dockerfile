@@ -1,6 +1,6 @@
-FROM php:%%PHP_VERSION%%-fpm-alpine3.8
+FROM php:7.3-fpm-alpine3.8
 
-ENV PHP_VERSION %%PHP_VERSION%%
+ENV PHP_VERSION 7.3
 ENV PHP_INI_DIR /usr/local/etc/php
 
 RUN `# ------- fix missing libcrypto - bug --------------` && \
@@ -40,9 +40,9 @@ RUN    mkdir -p setup_php && cd setup_php && \
     /usr/local/bin/php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
 
-RUN ln -s /usr/bin/php%%PHP_VERSION%% /usr/bin/php \
-    && ln -s /opt/remi/php%%PHP_VERSION%%/root/bin/php-config /usr/bin/php-config \
-    && ln -s /etc/opt/remi/php%%PHP_VERSION%% /etc/php
+RUN ln -s /usr/bin/php7.3 /usr/bin/php \
+    && ln -s /opt/remi/php7.3/root/bin/php-config /usr/bin/php-config \
+    && ln -s /etc/opt/remi/php7.3 /etc/php
 
 
 WORKDIR /data
