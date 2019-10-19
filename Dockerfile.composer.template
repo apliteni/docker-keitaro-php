@@ -1,4 +1,4 @@
-FROM apliteni/keitaro-php:php70
+FROM apliteni/keitaro-php:%%PHP_VERSION%%
 
 ENV COMPOSER_CACHE_DIR=/cache
 
