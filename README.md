@@ -1,2 +1,6 @@
-# keitaro-php
-A PHP-FPM image with all the dependencies to run automated tests
+# PHP images 
+PHP images to run Keitaro automated tests 
+
+## How to update
+
+    ./update.sh 

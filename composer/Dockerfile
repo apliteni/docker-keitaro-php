@@ -11,5 +11,3 @@ RUN curl https://getcomposer.org/installer -o composer-installer.php \
     && mv composer.phar /usr/local/bin/composer
 
 ENTRYPOINT ["/usr/local/bin/composer"]
-
-

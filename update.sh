@@ -2,13 +2,13 @@
 
 render() {
 sedStr="
-  s!%%PHP_VEERSION%%!$version!g;
+  s!%%PHP_VERSION%%!$version!g;
 "
 
-sed -r "$sedStr" $1
+sed -E "$sedStr" $1
 }
 
-versions=(5.6 7.0 7.1 7.2 7.3)
+versions=(56 70 71 72 73)
 for version in ${versions[*]}; do
   mkdir $version
   render Dockerfile.template > $version/Dockerfile
