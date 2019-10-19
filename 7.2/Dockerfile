@@ -3,9 +3,11 @@ FROM php:7.2-fpm-alpine3.8
 ENV PHP_VERSION 7.2
 ENV PHP_INI_DIR /usr/local/etc/php
 
+RUN apk --no-cache --update upgrade
+
 RUN `# ------- fix missing libcrypto - bug --------------` && \
     echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --update libressl2.7-libcrypto && \
+    apk add --update libressl2.9-libcrypto && \
     `# ------- add usermod and groupmod tools -----------` && \
     echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --update shadow
