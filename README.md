@@ -1,2 +1,2 @@
 # keitaro-php
-Build PHP-FPM image with all needed dependencies
+A PHP-FPM image with all the dependencies to run automated tests
