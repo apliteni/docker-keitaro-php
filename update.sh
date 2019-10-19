@@ -18,7 +18,7 @@ for version in ${versions[*]}; do
 done
 
 redis_version=""
-versions=(7.1 7.2 7.3)
+versions=(7.1 7.2 7.3 7.4-rc)
 for version in ${versions[*]}; do
   mkdir $version
   render Dockerfile.template > $version/Dockerfile
