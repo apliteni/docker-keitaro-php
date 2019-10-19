@@ -13,8 +13,6 @@ RUN `# ------- fix missing libcrypto - bug --------------` && \
     apk add --update shadow
 
 # add packages for pecl
-RUN apk --no-cache --update upgrade musl
-
 RUN apk add autoconf gcc g++ make git
 RUN apk add fcgi
 
