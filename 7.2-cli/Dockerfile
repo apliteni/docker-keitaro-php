@@ -1,6 +1,6 @@
-FROM php:7.0-fpm-alpine3.4
+FROM php:7.2-cli-alpine
 
-ENV PHP_VERSION 7.0
+ENV PHP_VERSION 7.2
 ENV PHP_INI_DIR /usr/local/etc/php
 
 RUN apk --no-cache --update upgrade
@@ -39,6 +39,10 @@ RUN    mkdir -p setup_php && cd setup_php && \
     curl -s https://getcomposer.org/installer -o composer-setup.php && \
     /usr/local/bin/php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
+
+RUN ln -s /usr/bin/php7.2 /usr/bin/php \
+    && ln -s /opt/remi/php7.2/root/bin/php-config /usr/bin/php-config \
+    && ln -s /etc/opt/remi/php7.2 /etc/php
 
 
 WORKDIR /data

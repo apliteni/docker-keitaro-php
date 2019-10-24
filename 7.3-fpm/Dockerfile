@@ -47,8 +47,4 @@ RUN ln -s /usr/bin/php7.3 /usr/bin/php \
 
 WORKDIR /data
 
-RUN mv ${PHP_INI_DIR}/php.ini-development ${PHP_INI_DIR}/php.ini
-
-RUN sed -i -r -e 's/^;?memory_limit = .*/memory_limit=512M/' ${PHP_INI_DIR}/php.ini
-
 VOLUME ["/data", "/cache"]

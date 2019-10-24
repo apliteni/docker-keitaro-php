@@ -1,6 +1,6 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.0-fpm-alpine3.4
 
-ENV PHP_VERSION 7.1
+ENV PHP_VERSION 7.0
 ENV PHP_INI_DIR /usr/local/etc/php
 
 RUN apk --no-cache --update upgrade
@@ -40,15 +40,11 @@ RUN    mkdir -p setup_php && cd setup_php && \
     /usr/local/bin/php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
 
-RUN ln -s /usr/bin/php7.1 /usr/bin/php \
-    && ln -s /opt/remi/php7.1/root/bin/php-config /usr/bin/php-config \
-    && ln -s /etc/opt/remi/php7.1 /etc/php
+RUN ln -s /usr/bin/php7.0 /usr/bin/php \
+    && ln -s /opt/remi/php7.0/root/bin/php-config /usr/bin/php-config \
+    && ln -s /etc/opt/remi/php7.0 /etc/php
 
 
 WORKDIR /data
-
-RUN mv ${PHP_INI_DIR}/php.ini-development ${PHP_INI_DIR}/php.ini
-
-RUN sed -i -r -e 's/^;?memory_limit = .*/memory_limit=512M/' ${PHP_INI_DIR}/php.ini
 
 VOLUME ["/data", "/cache"]

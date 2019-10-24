@@ -1,6 +1,6 @@
-FROM php:%%PHP_VERSION%%-%%PHP_VARIANT%%-alpine%%ALPINE_VERSION%%
+FROM php:5.6-cli-alpine
 
-ENV PHP_VERSION %%PHP_VERSION%%
+ENV PHP_VERSION 5.6
 ENV PHP_INI_DIR /usr/local/etc/php
 
 RUN apk --no-cache --update upgrade
@@ -24,7 +24,7 @@ RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
 # add pecl php extensions
-RUN pecl install redis%%REDIS_VERSION%% && docker-php-ext-enable redis && \
+RUN pecl install redis-2.2.8 && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip
 
 # add standart ioncube php-extension
@@ -40,9 +40,9 @@ RUN    mkdir -p setup_php && cd setup_php && \
     /usr/local/bin/php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
 
-RUN ln -s /usr/bin/php%%PHP_VERSION%% /usr/bin/php \
-    && ln -s /opt/remi/php%%PHP_VERSION%%/root/bin/php-config /usr/bin/php-config \
-    && ln -s /etc/opt/remi/php%%PHP_VERSION%% /etc/php
+RUN ln -s /usr/bin/php5.6 /usr/bin/php \
+    && ln -s /opt/remi/php5.6/root/bin/php-config /usr/bin/php-config \
+    && ln -s /etc/opt/remi/php5.6 /etc/php
 
 
 WORKDIR /data
