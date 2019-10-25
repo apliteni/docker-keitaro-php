@@ -22,13 +22,7 @@ for variant in ${variants[*]}; do
     render Dockerfile.template > $version-$variant/Dockerfile
   done
 
-  redis_version=""
-  alpine_version="3.4"
-  versions=(7.0)
-  for version in ${versions[*]}; do
-    mkdir $version-$variant
-    render Dockerfile.template > $version-$variant/Dockerfile
-  done
+  # excluding 7.0
 
   redis_version=""
   alpine_version=""
