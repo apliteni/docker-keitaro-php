@@ -7,7 +7,7 @@ RUN apk --no-cache --update upgrade
 
 RUN `# ------- fix missing libcrypto - bug --------------` && \
     echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --update libressl2.9-libcrypto && \
+    apk add --update libressl3.1-libcrypto && \
     `# ------- add usermod and groupmod tools -----------` && \
     echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --update shadow
@@ -44,6 +44,8 @@ RUN ln -s /usr/bin/php7.2 /usr/bin/php \
     && ln -s /opt/remi/php7.2/root/bin/php-config /usr/bin/php-config \
     && ln -s /etc/opt/remi/php7.2 /etc/php
 
+# Add php.ini
+ADD ./php.ini "$PHP_INI_DIR/php.ini"
 
 WORKDIR /data
 
