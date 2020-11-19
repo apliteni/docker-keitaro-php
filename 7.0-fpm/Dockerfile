@@ -24,7 +24,8 @@ RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
 # add pecl php extensions
-RUN pecl install redis && docker-php-ext-enable redis && \
+RUN pecl channel-update pecl.php.net && \
+    pecl install redis && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip
 
 # add standart ioncube php-extension
