@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine
 
 # dependencies required for running "phpize"
 # these get automatically installed and removed by "docker-php-ext-*" (unless they're already installed)
@@ -18,9 +18,7 @@ RUN apk add --no-cache --virtual .persistent-deps \
 		ca-certificates \
 		curl \
 		tar \
-		xz \
-# https://github.com/docker-library/php/issues/494
-		openssl
+		xz
 
 # ensure www-data user exists
 RUN set -x \
@@ -137,11 +135,7 @@ RUN set -xe \
 	)" \
 	&& apk add --no-cache --virtual .php-rundeps $runDeps \
 	\
-	&& apk del .build-deps \
-	\
-# https://github.com/docker-library/php/issues/443
-	&& pecl update-channels \
-	&& rm -rf /tmp/pear ~/.pearrc
+	&& apk del .build-deps
 
 COPY docker-php-ext-* docker-php-entrypoint /usr/local/bin/
 
@@ -159,7 +153,7 @@ RUN apk --no-cache --update upgrade
 
 RUN `# ------- fix missing libcrypto - bug --------------` && \
     echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --update libressl2.9-libcrypto && \
+    apk add --update libressl3.1-libcrypto && \
     `# ------- add usermod and groupmod tools -----------` && \
     echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
     apk add --update shadow
