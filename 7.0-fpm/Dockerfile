@@ -1,4 +1,4 @@
-FROM php:7.0-fpm-alpine3.4
+FROM php:7.0-fpm-alpine3.7
 
 ENV PHP_VERSION 7.0
 ENV PHP_INI_DIR /usr/local/etc/php
@@ -6,10 +6,10 @@ ENV PHP_INI_DIR /usr/local/etc/php
 RUN apk --no-cache --update upgrade
 
 RUN `# ------- fix missing libcrypto - bug --------------` && \
-    echo http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --update libressl2.9-libcrypto && \
+    echo http://dl-cdn.alpinelinux.org/alpine/v3.7/main >> /etc/apk/repositories && \
+    apk add --update libressl2.6-libcrypto && \
     `# ------- add usermod and groupmod tools -----------` && \
-    echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories && \
+    echo http://dl-cdn.alpinelinux.org/alpine/v3.7/community/ >> /etc/apk/repositories && \
     apk add --update shadow
 
 # add packages for pecl
@@ -24,7 +24,8 @@ RUN docker-php-ext-install bcmath && \
     docker-php-ext-install sockets
 
 # add pecl php extensions
-RUN pecl install redis && docker-php-ext-enable redis && \
+RUN pecl channel-update pecl.php.net && \
+    pecl install redis && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip
 
 # add standart ioncube php-extension
