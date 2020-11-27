@@ -34,7 +34,7 @@ RUN    mkdir -p setup_php && cd setup_php && \
     `# ------- install composer -------------------------` && \
     mkdir -p setup_composer && cd setup_composer && \
     curl -s https://getcomposer.org/installer -o composer-setup.php && \
-    /usr/local/bin/php composer-setup.php --install-dir=/usr/bin --filename=composer && \
+    /usr/local/bin/php composer-setup.php --1 --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
 
 RUN ln -s /usr/bin/php7.2 /usr/bin/php \
