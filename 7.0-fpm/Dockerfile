@@ -27,7 +27,7 @@ RUN docker-php-ext-install bcmath && \
 RUN pecl channel-update pecl.php.net && \
     pecl install redis && docker-php-ext-enable redis && \
     apk add libzip libzip-dev && pecl install zip && docker-php-ext-enable zip && \
-    pecl install xdebug-3.0.1
+    pecl install xdebug-2.7.2
 
 # add standart ioncube php-extension
 RUN    mkdir -p setup_php && cd setup_php && \
