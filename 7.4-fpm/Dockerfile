@@ -38,7 +38,7 @@ RUN    mkdir -p setup_php && cd setup_php && \
     /usr/local/bin/php composer-setup.php --1 --install-dir=/usr/bin --filename=composer && \
     cd .. && rm -rf setup_composer
 
-RUN ln -s /usr/bin/php4 /usr/bin/php \
+RUN ln -s /usr/bin/php7.4 /usr/bin/php \
     && ln -s /opt/remi/php7.4/root/bin/php-config /usr/bin/php-config \
     && ln -s /etc/opt/remi/php7.4 /etc/php
 

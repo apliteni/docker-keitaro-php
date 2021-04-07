@@ -42,6 +42,8 @@ RUN ln -s /usr/bin/php7.3 /usr/bin/php \
     && ln -s /opt/remi/php7.3/root/bin/php-config /usr/bin/php-config \
     && ln -s /etc/opt/remi/php7.3 /etc/php
 
+# Add php.ini
+ADD ./php.ini "$PHP_INI_DIR/php.ini"
 
 WORKDIR /data
 
